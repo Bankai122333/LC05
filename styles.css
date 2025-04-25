@@ -1,0 +1,370 @@
+/* Modern, professional styling with Network Rail branding */
+:root {
+    --nr-blue: #002f6c;        /* Network Rail primary blue */
+    --nr-light-blue: #5b7bbc;  /* Network Rail light blue */
+    --nr-gray: #54565a;        /* Network Rail gray */
+    --nr-light-gray: #e9eaec;  /* Light gray for backgrounds */
+    --nr-accent: #e94928;      /* Network Rail accent color */
+    --nr-success: #2a9d54;     /* Success green */
+    --nr-warning: #e89e3c;     /* Warning orange */
+    --nr-error: #db2424;       /* Error red */
+    --nr-focus: rgba(0, 47, 108, 0.2); /* Focus outline color */
+    --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--nr-light-gray);
+    color: var(--nr-gray);
+    line-height: 1.6;
+    padding-bottom: 50px;
+}
+
+header {
+    background-color: white;
+    color: var(--nr-blue);
+    padding: 15px 0;
+    box-shadow: var(--card-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 4px solid var(--nr-blue);
+}
+
+.header-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo-container {
+    margin-right: 20px;
+}
+
+#nr-logo {
+    max-height: 50px;
+    width: auto;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--nr-blue);
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+    padding: 30px;
+}
+
+.form-section {
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid var(--nr-light-gray);
+}
+
+.form-section h2 {
+    color: var(--nr-blue);
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 0;
+}
+
+.half {
+    flex: 1;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--nr-gray);
+}
+
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: all 0.2s ease;
+    background-color: #fff;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--nr-blue);
+    outline: none;
+    box-shadow: 0 0 0 3px var(--nr-focus);
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+.radio-label input[type="radio"] {
+    margin-right: 8px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--nr-blue);
+}
+
+/* Long labels for questions with detailed text */
+.long-label {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* Image Upload Styling */
+.image-upload-container {
+    margin-top: 10px;
+}
+
+.file-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.file-label {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: var(--nr-blue);
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.file-label:hover {
+    background-color: #00275a;
+}
+
+.file-info {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #666;
+}
+
+.image-preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.image-preview-wrapper {
+    position: relative;
+}
+
+.image-preview {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+.remove-image {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: var(--nr-error);
+    color: white;
+    border: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Signature Pad Styling */
+.signature-container {
+    margin-top: 12px;
+}
+
+.signature-pad {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    width: 100%;
+    max-width: 400px;
+    height: 200px;
+    touch-action: none; /* Important for proper touch handling */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.clear-signature {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: var(--nr-warning);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.clear-signature:hover {
+    background-color: #d08829;
+}
+
+/* Caveats section styling - will only show up when "Approved with Caveats" is selected */
+#caveatsSection {
+    background-color: rgba(232, 158, 60, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--nr-warning);
+}
+
+#caveatsSection h2 {
+    color: var(--nr-warning);
+}
+
+#caveatsSection.hidden {
+    display: none;
+}
+
+/* LC05 Status section styling */
+.lc05-status-section {
+    background-color: rgba(42, 157, 84, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+}
+
+/* Button styling */
+.button-group {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
+button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#generatePdfBtn {
+    background-color: var(--nr-blue);
+    color: white;
+}
+
+#generatePdfBtn:hover {
+    background-color: #00275a;
+}
+
+#saveLocalBtn {
+    background-color: var(--nr-success);
+    color: white;
+}
+
+#saveLocalBtn:hover {
+    background-color: #238a47;
+}
+
+#clearFormBtn {
+    background-color: var(--nr-error);
+    color: white;
+}
+
+#clearFormBtn:hover {
+    background-color: #c01f1f;
+}
+
+.hidden {
+    display: none;
+}
+
+/* For iPad optimization */
+@media (max-width: 768px) {
+    .container {
+        margin: 15px;
+        padding: 20px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    button {
+        width: 100%;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .logo-container {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    /* Improve tap targets for iPad */
+    input, select, button, .radio-label {
+        min-height: 44px;
+    }
+    
+    /* Adjust signature pad for easier signing on iPad */
+    .signature-pad {
+        height: 250px;
+    }
+}

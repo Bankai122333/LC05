@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LC05 Temporary Trading Certificate</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <img id="nr-logo" src="nr-logo.png" alt="Network Rail Logo">
+            </div>
+            <h1>LC05 Temporary Trading Certificate</h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <form id="inspectionForm">
+            <!-- Information Section -->
+            <div class="form-section">
+                <h2>Information</h2>
+                
+                <div class="form-group">
+                    <label for="station">Station:</label>
+                    <input type="text" id="station" name="station">
+                </div>
+                
+                <div class="form-group">
+                    <label for="retailerName">Retailer (Brand) Name:</label>
+                    <input type="text" id="retailerName" name="retailerName">
+                </div>
+                
+                <div class="form-group">
+                    <label for="brandDesigner">Brand Designer:</label>
+                    <input type="text" id="brandDesigner" name="brandDesigner">
+                </div>
+                
+                <div class="form-group">
+                    <label for="brandFitOutContractor">Brand Fit-Out Contractor:</label>
+                    <input type="text" id="brandFitOutContractor" name="brandFitOutContractor">
+                </div>
+                
+                <div class="form-group">
+                    <label for="applicationTrackingNumber">Application Tracking Number: TN</label>
+                    <input type="text" id="applicationTrackingNumber" name="applicationTrackingNumber">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="dateOfLC05">Date of LC05:</label>
+                        <input type="date" id="dateOfLC05" name="dateOfLC05">
+                    </div>
+                    
+                    <div class="form-group half">
+                        <label for="proposedFirstDayOfTrading">Proposed first day of trading:</label>
+                        <input type="date" id="proposedFirstDayOfTrading" name="proposedFirstDayOfTrading">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dateOfExpiry">Date of expiry (30 days) from LC05:</label>
+                    <input type="date" id="dateOfExpiry" name="dateOfExpiry">
+                </div>
+            </div>
+            
+            <!-- Design Variations Section -->
+            <div class="form-section">
+                <h2>Design Variation</h2>
+                
+                <div class="form-group">
+                    <label for="designVariations">Are there any Minor Design Variations?</label>
+                    <div class="radio-group">
+                        <label class="radio-label"><input type="radio" name="designVariations" value="Yes"> Yes</label>
+                        <label class="radio-label"><input type="radio" name="designVariations" value="No"> No</label>
+                    </div>
+                </div>
+                
+                <div id="designVariationsDetails" class="form-group hidden">
+                    <label for="variationDetails">Provide proof (in form of signature from Facilities Surveyor):</label>
+                    <input type="text" id="variationDetails" name="variationDetails">
+                </div>
+            </div>
+            
+            <!-- Mandatory Documentation Section -->
+            <div class="form-section">
+                <h2>Mandatory Documentation for Unit Opening</h2>
+                
+                <div class="form-group">
+                    <label for="electricalCert">Electrical Installation Certification to BS7671:</label>
+                    <select id="electricalCert" name="electricalCert">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="gasSafetyCert">Gas Safety Certification:</label>
+                    <select id="gasSafetyCert" name="gasSafetyCert">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fireRiskAssessment" class="long-label">Fire Risk Assessment (FRA) for Unit and any other associated areas including remote storage and/or prep areas. A hard copy must be within the unit at all times and staff must be briefed on the contents:</label>
+                    <select id="fireRiskAssessment" name="fireRiskAssessment">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="emergencyLighting" class="long-label">Emergency Lighting – Certification and drawings (BS5266) including type and duration of install:</label>
+                    <select id="emergencyLighting" name="emergencyLighting">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="designCertification" class="long-label">Design Certification for Sprinklers, Fire Alarm, Smoke Extract, PAVA:</label>
+                    <select id="designCertification" name="designCertification">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="installationCertification" class="long-label">Installation Certification for Sprinklers, Fire Alarm, Smoke Extract, PAVA:</label>
+                    <select id="installationCertification" name="installationCertification">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="commissioningCertification" class="long-label">Commissioning Certification for Sprinklers, Fire Alarm, Smoke Extract, PAVA:</label>
+                    <select id="commissioningCertification" name="commissioningCertification">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="verificationCertification" class="long-label">Verification Certification (provided by designer) for Sprinklers, Fire Alarm, Smoke Extract, PAVA:</label>
+                    <select id="verificationCertification" name="verificationCertification">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="drawingsSchematics" class="long-label">Drawings and Schematics for Sprinklers, Fire Alarm, Smoke Extract, PAVA:</label>
+                    <select id="drawingsSchematics" name="drawingsSchematics">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="securityChecks" class="long-label">Security Checks – tenant understands DfT requirements of hourly security checks and locations to be checked. Security forms issued by NR:</label>
+                    <select id="securityChecks" name="securityChecks">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fireLogbook">Fire Logbook (Access provided by RBP if online version is used):</label>
+                    <select id="fireLogbook" name="fireLogbook">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="publicLiabilityInsurance">Public Liability Insurance:</label>
+                    <select id="publicLiabilityInsurance" name="publicLiabilityInsurance">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="employersLiabilityInsurance">Employers Liability Insurance:</label>
+                    <select id="employersLiabilityInsurance" name="employersLiabilityInsurance">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fra">FRA:</label>
+                    <select id="fra" name="fra">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="wra">WRA / Chlorination:</label>
+                    <select id="wra" name="wra">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pssr">PSSR Details and Certification:</label>
+                    <select id="pssr" name="pssr">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="electricalInstallCert">Electrical Installation Certificate:</label>
+                    <select id="electricalInstallCert" name="electricalInstallCert">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="emergencyLightingCert">Emergency Lighting Certificate:</label>
+                    <select id="emergencyLightingCert" name="emergencyLightingCert">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="gasSafetyCerts">Gas Safety Certificates:</label>
+                    <select id="gasSafetyCerts" name="gasSafetyCerts">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="gasSafeInstallCert">Gas Safe Installation Certificate:</label>
+                    <select id="gasSafeInstallCert" name="gasSafeInstallCert">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fGasRegister">F-Gas Register and Certification:</label>
+                    <select id="fGasRegister" name="fGasRegister">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="hsManual">H&S / O&M Manual on unit:</label>
+                    <select id="hsManual" name="hsManual">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="buildingControlsApproval">Building Controls Approval:</label>
+                    <select id="buildingControlsApproval" name="buildingControlsApproval">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Visual Checks Section -->
+            <div class="form-section">
+                <h2>Visual Checks to be carried out by NR</h2>
+                
+                <div class="form-group">
+                    <label for="electricityMeterPresent">Electricity meter present and accessible for reading:</label>
+                    <select id="electricityMeterPresent" name="electricityMeterPresent">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="electricityMeterReading">Electricity Meter Reading:</label>
+                    <input type="text" id="electricityMeterReading" name="electricityMeterReading">
+                </div>
+                
+                <div class="form-group">
+                    <label for="waterMeterPresent">Water meter present and accessible for reading:</label>
+                    <select id="waterMeterPresent" name="waterMeterPresent">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="waterMeterReading">Water Meter Reading:</label>
+                    <input type="text" id="waterMeterReading" name="waterMeterReading">
+                </div>
+                
+                <div class="form-group">
+                    <label for="gasMeterPresent">Gas meter present and accessible for reading:</label>
+                    <select id="gasMeterPresent" name="gasMeterPresent">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fogMitigation">FOG mitigation in place and is appropriate for the purpose intended:</label>
+                    <select id="fogMitigation" name="fogMitigation">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="visibleSignage">Visible electrical cable identification "LSF" or LSZH on the cable sheath:</label>
+                    <select id="visibleSignage" name="visibleSignage">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="kitchenExtract">Kitchen extract appears accessible and has visible access points (WYG can be asked to attend):</label>
+                    <select id="kitchenExtract" name="kitchenExtract">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="voidClosure">Void closure inspection carried out:</label>
+                    <select id="voidClosure" name="voidClosure">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fireSafetySystems" class="long-label">All fire safety systems – visual inspection including the following: Valves open as per requirements, AFD, sprinklers and MCP devices are functioning and are in correct locations. Fire Stopping: all penetrations are filled-in and compliant:</label>
+                    <select id="fireSafetySystems" name="fireSafetySystems">
+                        <option value="">Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+                
+                <!-- Image Upload for Visual Checks -->
+                <div class="form-group">
+                    <label for="visualChecksImages">Upload Images for Visual Checks:</label>
+                    <div class="image-upload-container">
+                        <div class="image-preview-container" id="visualChecksImagesPreview"></div>
+                        <input type="file" id="visualChecksImages" name="visualChecksImages" accept="image/*" multiple class="file-input">
+                        <label for="visualChecksImages" class="file-label">Choose Photos</label>
+                        <p class="file-info">Tap to take a photo or select from your gallery</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- LC05 Status Section -->
+            <div class="form-section">
+                <h2>LC05 Status</h2>
+                
+                <div class="form-group">
+                    <label for="permissionToTrade">LC05 (Temporary Trading Certificate) Approval Status:</label>
+                    <select id="permissionToTrade" name="permissionToTrade">
+                        <option value="">Select status</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Approved with Caveats">Approved with Caveats</option>
+                        <option value="Denied">Denied</option>
+                    </select>
+                </div>
+                
+                <!-- Asset Engineer Signature -->
+                <div class="form-group">
+                    <label for="assetEngineer">Asset Engineer:</label>
+                    <input type="text" id="assetEngineer" name="assetEngineer" placeholder="Print Name">
+                    <div class="signature-container">
+                        <canvas id="assetEngineerSignature" class="signature-pad" width="400" height="200"></canvas>
+                        <button type="button" class="clear-signature" data-target="assetEngineerSignature">Clear Signature</button>
+                    </div>
+                </div>
+                
+                <!-- Station Representative Signature -->
+                <div class="form-group">
+                    <label for="stationRep">Station Representative:</label>
+                    <input type="text" id="stationRep" name="stationRep" placeholder="Print Name">
+                    <div class="signature-container">
+                        <canvas id="stationRepSignature" class="signature-pad" width="400" height="200"></canvas>
+                        <button type="button" class="clear-signature" data-target="stationRepSignature">Clear Signature</button>
+                    </div>
+                </div>
+                
+                <!-- Fire Safety Engineer Signature -->
+                <div class="form-group">
+                    <label for="fireSafetyEngineer">Fire Safety Engineer:</label>
+                    <input type="text" id="fireSafetyEngineer" name="fireSafetyEngineer" placeholder="Print Name">
+                    <div class="signature-container">
+                        <canvas id="fireSafetyEngineerSignature" class="signature-pad" width="400" height="200"></canvas>
+                        <button type="button" class="clear-signature" data-target="fireSafetyEngineerSignature">Clear Signature</button>
+                    </div>
+                </div>
+                
+                <!-- Facilities Surveyor Signature -->
+                <div class="form-group">
+                    <label for="facilitiesSurveyor">Facilities Surveyor:</label>
+                    <input type="text" id="facilitiesSurveyor" name="facilitiesSurveyor" placeholder="Print Name">
+                    <div class="signature-container">
+                        <canvas id="facilitiesSurveyorSignature" class="signature-pad" width="400" height="200"></canvas>
+                        <button type="button" class="clear-signature" data-target="facilitiesSurveyorSignature">Clear Signature</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Caveats Section - Hidden by default, shown only when "Approved with Caveats" is selected -->
+            <div id="caveatsSection" class="form-section hidden">
+                <h2>Caveats (to be completed within 30 days)</h2>
+                
+                <div class="form-group">
+                    <label for="caveat1">Caveat 1:</label>
+                    <input type="text" id="caveat1" name="caveat1">
+                </div>
+                
+                <div class="form-group">
+                    <label for="caveat2">Caveat 2:</label>
+                    <input type="text" id="caveat2" name="caveat2">
+                </div>
+                
+                <div class="form-group">
+                    <label for="caveat3">Caveat 3:</label>
+                    <input type="text" id="caveat3" name="caveat3">
+                </div>
+                
+                <div class="form-group">
+                    <label for="caveat4">Caveat 4:</label>
+                    <input type="text" id="caveat4" name="caveat4">
+                </div>
+                
+                <div class="form-group">
+                    <label for="caveat5">Caveat 5:</label>
+                    <input type="text" id="caveat5" name="caveat5">
+                </div>
+                
+                <!-- Additional caveats fields can be shown if needed -->
+                <div id="additionalCaveats" class="hidden">
+                    <div class="form-group">
+                        <label for="caveat6">Caveat 6:</label>
+                        <input type="text" id="caveat6" name="caveat6">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="caveat7">Caveat 7:</label>
+                        <input type="text" id="caveat7" name="caveat7">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="caveat8">Caveat 8:</label>
+                        <input type="text" id="caveat8" name="caveat8">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="caveat9">Caveat 9:</label>
+                        <input type="text" id="caveat9" name="caveat9">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="caveat10">Caveat 10:</label>
+                        <input type="text" id="caveat10" name="caveat10">
+                    </div>
+                </div>
+                
+                <button type="button" id="showMoreCaveatsBtn" class="clear-signature">Show More Caveats</button>
+            </div>
+            
+            <!-- Form Buttons -->
+            <div class="button-group">
+                <button type="button" id="generatePdfBtn">Generate PDF</button>
+                <button type="button" id="saveLocalBtn">Save Form</button>
+                <button type="reset" id="clearFormBtn">Clear Form</button>
+            </div>
+        </form>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
